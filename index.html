@@ -45,7 +45,7 @@
       font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      line-height: 1.85;
+      line-height: 1.9;
       letter-spacing: 0.01em;
       transition: background-color 0.3s ease, color 0.3s ease;
       padding: 1.5rem 1rem;
@@ -65,7 +65,7 @@
       position: relative;
     }
 
-    /* Header & Action Controls */
+    /* Header & Controls */
     header {
       display: flex;
       justify-content: space-between;
@@ -73,8 +73,6 @@
       margin-bottom: 2rem;
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 1.25rem;
-      gap: 1rem;
-      flex-wrap: wrap;
     }
 
     .badge {
@@ -86,12 +84,6 @@
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
       letter-spacing: 0.05em;
-    }
-
-    .controls-group {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     .action-btn {
@@ -135,22 +127,22 @@
 
     /* Typography & Text Justification */
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 700;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       line-height: 1.3;
       text-align: center;
       word-break: keep-all;
     }
 
     .lead-quote {
-      font-size: 1.15rem;
+      font-size: 1.22rem;
       font-style: italic;
       color: var(--text-muted);
       border-left: 4px solid var(--quote-border);
-      padding: 0.75rem 1.25rem;
-      margin: 1.5rem 0 2rem;
+      padding: 0.85rem 1.35rem;
+      margin: 1.5rem 0 2.2rem;
       background: var(--accent-glow);
       border-radius: 0 10px 10px 0;
       text-align: justify;
@@ -168,8 +160,8 @@
     }
 
     p {
-      margin-bottom: 1.35rem;
-      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.15rem;
       word-break: keep-all;
       hyphens: none;
       -webkit-hyphens: none;
@@ -190,6 +182,7 @@
       padding-left: 1.2rem;
       margin: 1.5rem 0;
       font-weight: 500;
+      font-size: 1.15rem;
     }
 
     footer {
@@ -198,8 +191,8 @@
       border-top: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      font-size: 0.95rem;
+      gap: 1.25rem;
+      font-size: 1rem;
       color: var(--text-muted);
       font-style: italic;
     }
@@ -209,6 +202,13 @@
       color: var(--accent);
       font-style: normal;
       font-family: 'IBM Plex Sans', monospace;
+    }
+
+    .footer-bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.5rem;
     }
 
     /* Mobile Adjustments */
@@ -221,14 +221,17 @@
         border-radius: 14px;
       }
       h1 {
-        font-size: 1.65rem;
+        font-size: 1.75rem;
       }
       p {
-        font-size: 1rem;
-        line-height: 1.75;
+        font-size: 1.08rem;
+        line-height: 1.8;
       }
       .lead-quote {
-        font-size: 1.02rem;
+        font-size: 1.1rem;
+      }
+      .highlight-box {
+        font-size: 1.08rem;
       }
     }
   </style>
@@ -237,20 +240,13 @@
 
   <main class="container">
     <header>
-            
-      <div class="controls-group">
-        <!-- Share Button -->
-        <button class="action-btn" id="shareBtn" aria-label="Share this article">
-          <span>🔗</span>
-          <span id="shareLabel">Share</span>
-        </button>
-
-        <!-- Theme Toggle Button -->
-        <button class="action-btn" id="themeToggle" aria-label="Toggle Theme">
-          <span id="themeIcon">🌙</span>
-          <span id="themeLabel">Dark Mode</span>
-        </button>
-      </div>
+      <span class="badge">विचार मंथन / तत्त्वज्ञान</span>
+      
+      <!-- Theme Toggle Button -->
+      <button class="action-btn" id="themeToggle" aria-label="Toggle Theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeLabel">Dark Mode</span>
+      </button>
     </header>
 
     <!-- Vector Art representing atoms, cosmos, and consciousness -->
@@ -361,7 +357,16 @@
 
     <footer>
       <div><em>सुप्राकॉन्शसच्या पातळीवरून ऑकल्ट एक्स्पीरियन्स घेत असताना इन ट्यून विथ द ट्यून..</em></div>
-      <div class="footer-stamp">~२०२६०९०९</div>
+      
+      <div class="footer-bottom-bar">
+        <span class="footer-stamp">२०२६०९०९</span>
+        
+        <!-- Share Button at the bottom -->
+        <button class="action-btn" id="shareBtn" aria-label="Share this article">
+          <span>🔗</span>
+          <span id="shareLabel">Share</span>
+        </button>
+      </div>
     </footer>
   </main>
 
