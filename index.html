@@ -5,34 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>आस्तिक (ना)आस्तिक…</title>
   
-  <!-- IBM Plex Sans & IBM Plex Sans Devanagari Font -->
+  <!-- IBM Plex Sans / IBM Plex Sans Devanagari Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #f8fafc;
-      --card-bg: #ffffff;
-      --text-color: #1e293b;
-      --text-muted: #64748b;
-      --accent: #4338ca;
-      --accent-glow: rgba(67, 56, 202, 0.15);
-      --border-color: #e2e8f0;
-      --quote-border: #4338ca;
-      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --bg-color: #fbf9f5;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(210, 195, 175, 0.4);
+      --text-main: #2b2520;
+      --text-muted: #6e655f;
+      --accent-color: #8b5a2b;
+      --accent-soft: rgba(139, 90, 43, 0.08);
+      --accent-glow: rgba(212, 137, 66, 0.25);
+      --btn-bg: #8b5a2b;
+      --btn-text: #ffffff;
+      --btn-hover: #70451e;
+      --shadow: 0 16px 40px rgba(70, 50, 30, 0.08);
+      --divider-color: #b0957d;
+      --atom-orbit: rgba(139, 90, 43, 0.28);
     }
 
     [data-theme="dark"] {
-      --bg-color: #0b0f19;
-      --card-bg: #131b2e;
-      --text-color: #f1f5f9;
-      --text-muted: #94a3b8;
-      --accent: #818cf8;
-      --accent-glow: rgba(129, 140, 248, 0.15);
-      --border-color: #1e293b;
-      --quote-border: #818cf8;
-      --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+      --bg-color: #121316;
+      --card-bg: rgba(24, 26, 31, 0.92);
+      --card-border: rgba(90, 85, 100, 0.35);
+      --text-main: #e8e6e3;
+      --text-muted: #a49f99;
+      --accent-color: #e5a96b;
+      --accent-soft: rgba(229, 169, 107, 0.12);
+      --accent-glow: rgba(229, 169, 107, 0.2);
+      --btn-bg: #e5a96b;
+      --btn-text: #1a1612;
+      --btn-hover: #f0be8c;
+      --shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+      --divider-color: #8f7967;
+      --atom-orbit: rgba(229, 169, 107, 0.35);
     }
 
     * {
@@ -42,371 +52,452 @@
     }
 
     body {
-      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
       background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.9;
-      letter-spacing: 0.01em;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      padding: 1.5rem 1rem;
+      color: var(--text-main);
+      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
+      padding: 2.5rem 1.25rem 4rem;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      line-height: 1.95;
     }
 
     .container {
-      max-width: 780px;
       width: 100%;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 3rem 2.5rem;
-      box-shadow: var(--shadow);
+      max-width: 820px;
       position: relative;
     }
 
-    /* Header & Controls */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 1.25rem;
+    .theme-toggle-wrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
     }
 
-    .badge {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-glow);
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      letter-spacing: 0.05em;
-    }
-
-    .action-btn {
-      background: none;
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 0.5rem 0.85rem;
-      border-radius: 10px;
+    .theme-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.45rem;
-      font-size: 0.85rem;
-      font-family: inherit;
-      transition: all 0.2s ease;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
     }
 
-    .action-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+    .theme-btn:hover {
+      transform: scale(1.08);
     }
 
-    /* Hero SVG Graphic */
-    .illustration-wrapper {
-      margin: 1.5rem 0 2.5rem;
-      border-radius: 16px;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(67, 56, 202, 0.06), rgba(129, 140, 248, 0.08));
-      border: 1px solid var(--border-color);
+    .art-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1.5rem;
+      margin: 1.5rem 0 2.5rem;
     }
 
-    svg.hero-art {
+    .animated-svg {
       width: 100%;
-      max-height: 250px;
-      display: block;
+      max-width: 330px;
+      height: auto;
+      filter: drop-shadow(0 8px 24px var(--accent-glow));
     }
 
-    /* Typography & Text Justification */
-    h1 {
-      font-size: 2.3rem;
+    @keyframes rotateClockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes rotateCounter {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    @keyframes pulseCore {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.15); opacity: 0.75; }
+    }
+
+    .orbit-1 {
+      transform-origin: 150px 150px;
+      animation: rotateClockwise 18s linear infinite;
+    }
+
+    .orbit-2 {
+      transform-origin: 150px 150px;
+      animation: rotateCounter 24s linear infinite;
+    }
+
+    .orbit-3 {
+      transform-origin: 150px 150px;
+      animation: rotateClockwise 32s linear infinite;
+    }
+
+    .nucleus-core {
+      transform-origin: 150px 150px;
+      animation: pulseCore 3.5s ease-in-out infinite;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 3.5rem 3rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .doc-title {
+      font-size: 2.2rem;
       font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 1.25rem;
-      line-height: 1.3;
       text-align: center;
-      word-break: keep-all;
-    }
-
-    .lead-quote {
-      font-size: 1.22rem;
-      font-style: italic;
-      color: var(--text-muted);
-      border-left: 4px solid var(--quote-border);
-      padding: 0.85rem 1.35rem;
-      margin: 1.5rem 0 2.2rem;
-      background: var(--accent-glow);
-      border-radius: 0 10px 10px 0;
-      text-align: justify;
-      hyphens: none;
-      -webkit-hyphens: none;
-      word-break: keep-all;
+      margin-bottom: 2rem;
+      color: var(--accent-color);
+      letter-spacing: 0.5px;
+      line-height: 1.4;
     }
 
     .content {
+      font-size: 1.18rem;
+      font-weight: 400;
+      line-height: 2.05;
+      color: var(--text-main);
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      hyphens: none;
+    }
+
+    .content p {
       text-align: justify;
-      text-justify: inter-word;
-      hyphens: none;
-      -webkit-hyphens: none;
-      word-break: keep-all;
+      margin-bottom: 1.6rem;
     }
 
-    p {
-      margin-bottom: 1.5rem;
-      font-size: 1.15rem;
-      word-break: keep-all;
-      hyphens: none;
-      -webkit-hyphens: none;
-    }
-
-    .section-divider {
+    .content p.text-center-highlight {
       text-align: center;
-      font-size: 1.5rem;
-      letter-spacing: 0.5rem;
-      color: var(--accent);
-      margin: 2.5rem 0;
-      user-select: none;
-      opacity: 0.7;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.9;
+      margin: 2.2rem 0;
+      padding: 1rem 1.4rem;
+      background: var(--accent-soft);
+      border-radius: 14px;
+      border-left: 3px solid var(--accent-color);
+      border-right: 3px solid var(--accent-color);
     }
 
-    .highlight-box {
-      border-left: 3px solid var(--accent);
-      padding-left: 1.2rem;
-      margin: 1.5rem 0;
-      font-weight: 500;
-      font-size: 1.15rem;
+    .content p.text-center-statement {
+      text-align: center;
+      font-size: 1.22rem;
+      font-weight: 600;
+      line-height: 1.9;
+      margin: 2.2rem 0;
+      padding: 0.9rem 1.2rem;
+      background: var(--accent-soft);
+      border-radius: 14px;
     }
 
-    footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      font-size: 1rem;
+    /* Centered text formatting */
+    .note-centered {
+      text-align: center !important;
+      font-size: 0.96rem;
+      font-weight: 300;
       color: var(--text-muted);
+      margin: 1.4rem 0;
+      line-height: 1.8;
+    }
+
+    .date-centered {
+      text-align: center !important;
+      font-size: 0.88rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin: 1.2rem 0;
+    }
+
+    .divider {
+      text-align: center;
+      font-size: 1.25rem;
+      letter-spacing: 0.5rem;
+      color: var(--divider-color);
+      margin: 2.2rem 0;
+      user-select: none;
+    }
+
+    .divider-short {
+      letter-spacing: 0.4rem;
+      margin: 1.8rem 0;
+    }
+
+    .divider-single {
+      letter-spacing: 0;
+      margin: 1.4rem 0;
+    }
+
+    b, strong {
+      font-weight: 600;
+    }
+
+    i, em {
       font-style: italic;
     }
 
-    .footer-stamp {
-      font-weight: 600;
-      color: var(--accent);
-      font-style: normal;
-      font-family: 'IBM Plex Sans', monospace;
-    }
-
-    .footer-bottom-bar {
+    .actions-wrap {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding-top: 0.5rem;
+      margin-top: 3.5rem;
+      gap: 0.8rem;
     }
 
-    /* Mobile Adjustments */
-    @media (max-width: 640px) {
+    .share-btn {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      padding: 0.9rem 2.4rem;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border-radius: 50px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      transition: all 0.25s ease;
+    }
+
+    .share-btn:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .share-btn svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .toast {
+      font-size: 0.9rem;
+      color: var(--accent-color);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      height: 1.2rem;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 680px) {
       body {
-        padding: 0.75rem;
+        padding: 1.2rem 0.85rem 3rem;
+        line-height: 1.85;
       }
-      .container {
-        padding: 1.75rem 1.25rem;
-        border-radius: 14px;
+
+      .card {
+        padding: 2.2rem 1.3rem;
+        border-radius: 18px;
       }
-      h1 {
-        font-size: 1.75rem;
+
+      .doc-title {
+        font-size: 1.8rem;
       }
-      p {
-        font-size: 1.08rem;
-        line-height: 1.8;
+
+      .content {
+        font-size: 1.12rem;
+        line-height: 1.95;
       }
-      .lead-quote {
+
+      .content p.text-center-highlight,
+      .content p.text-center-statement {
+        font-size: 1.15rem;
+        padding: 0.85rem 1rem;
+      }
+
+      .note-centered {
+        font-size: 0.9rem;
+      }
+
+      .date-centered {
+        font-size: 0.82rem;
+      }
+
+      .theme-btn {
+        width: 40px;
+        height: 40px;
         font-size: 1.1rem;
-      }
-      .highlight-box {
-        font-size: 1.08rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <main class="container">
-    <header>
-      <span class="badge">विचार मंथन / तत्त्वज्ञान</span>
-      
-      <!-- Theme Toggle Button -->
-      <button class="action-btn" id="themeToggle" aria-label="Toggle Theme">
-        <span id="themeIcon">🌙</span>
-        <span id="themeLabel">Dark Mode</span>
-      </button>
-    </header>
+  <div class="container">
+    <div class="theme-toggle-wrap">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme">🌓</button>
+    </div>
 
-    <!-- Vector Art representing atoms, cosmos, and consciousness -->
-    <div class="illustration-wrapper">
-      <svg class="hero-art" viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Animated Cosmic Atom SVG -->
+    <div class="art-container">
+      <svg class="animated-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="atomGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#818cf8" stop-opacity="0.8"/>
-            <stop offset="100%" stop-color="#4338ca" stop-opacity="0"/>
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffb86c" stop-opacity="0.95"/>
+            <stop offset="45%" stop-color="#ff79c6" stop-opacity="0.75"/>
+            <stop offset="85%" stop-color="#bd93f9" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#bd93f9" stop-opacity="0"/>
           </radialGradient>
-        </defs>
-        <circle cx="300" cy="120" r="45" fill="url(#atomGlow)" />
-        <circle cx="300" cy="120" r="14" fill="#6366f1" />
-        <circle cx="300" cy="120" r="6" fill="#ffffff" />
-        
-        <ellipse cx="300" cy="120" rx="140" ry="48" stroke="#818cf8" stroke-width="1.6" stroke-dasharray="6 4" transform="rotate(-25 300 120)" opacity="0.85"/>
-        <ellipse cx="300" cy="120" rx="140" ry="48" stroke="#818cf8" stroke-width="1.6" stroke-dasharray="6 4" transform="rotate(25 300 120)" opacity="0.85"/>
-        <ellipse cx="300" cy="120" rx="150" ry="52" stroke="#6366f1" stroke-width="1.8" transform="rotate(85 300 120)" opacity="0.5"/>
+          
+          <linearGradient id="orbitGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff79c6"/>
+            <stop offset="100%" stop-color="#8be9fd"/>
+          </linearGradient>
 
-        <circle cx="200" cy="85" r="5" fill="#38bdf8" />
-        <circle cx="410" cy="95" r="4" fill="#f43f5e" />
-        <circle cx="310" cy="40" r="4.5" fill="#eab308" />
-        <circle cx="280" cy="195" r="5.5" fill="#10b981" />
-        
-        <line x1="200" y1="85" x2="300" y2="120" stroke="#38bdf8" stroke-width="0.8" opacity="0.4" />
-        <line x1="410" y1="95" x2="300" y2="120" stroke="#f43f5e" stroke-width="0.8" opacity="0.4" />
-        <line x1="280" y1="195" x2="300" y2="120" stroke="#10b981" stroke-width="0.8" opacity="0.4" />
+          <linearGradient id="orbitGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#50fa7b"/>
+            <stop offset="100%" stop-color="#ffb86c"/>
+          </linearGradient>
+
+          <linearGradient id="orbitGrad3" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#bd93f9"/>
+            <stop offset="100%" stop-color="#ff79c6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Dynamic Orbits -->
+        <g class="orbit-1">
+          <ellipse cx="150" cy="150" rx="122" ry="46" stroke="url(#orbitGrad1)" stroke-width="2.2" stroke-dasharray="7 5"/>
+          <circle cx="272" cy="150" r="6" fill="#8be9fd" filter="drop-shadow(0 0 5px #8be9fd)"/>
+          <circle cx="28" cy="150" r="4.5" fill="#ff79c6" filter="drop-shadow(0 0 4px #ff79c6)"/>
+        </g>
+
+        <g class="orbit-2">
+          <ellipse cx="150" cy="150" rx="122" ry="46" transform="rotate(60 150 150)" stroke="url(#orbitGrad2)" stroke-width="2.2" stroke-dasharray="10 6"/>
+          <circle cx="236" cy="200" r="5.5" fill="#50fa7b" filter="drop-shadow(0 0 5px #50fa7b)"/>
+          <circle cx="64" cy="100" r="4" fill="#ffb86c" filter="drop-shadow(0 0 4px #ffb86c)"/>
+        </g>
+
+        <g class="orbit-3">
+          <ellipse cx="150" cy="150" rx="122" ry="46" transform="rotate(120 150 150)" stroke="url(#orbitGrad3)" stroke-width="2.2"/>
+          <circle cx="211" cy="90" r="5" fill="#bd93f9" filter="drop-shadow(0 0 5px #bd93f9)"/>
+          <circle cx="89" cy="210" r="4" fill="#ff79c6" filter="drop-shadow(0 0 4px #ff79c6)"/>
+        </g>
+
+        <!-- Nucleus Core / Life Spark -->
+        <circle class="nucleus-core" cx="150" cy="150" r="28" fill="url(#centerGlow)"/>
+        <circle cx="150" cy="150" r="9" fill="#ffffff" filter="drop-shadow(0 0 8px rgba(255,255,255,0.95))"/>
       </svg>
     </div>
 
-    <article class="content">
-      <h1>आस्तिक (ना)आस्तिक…</h1>
+    <!-- Document Card -->
+    <article class="card">
+      <h1 class="doc-title">आस्तिक (ना)आस्तिक…</h1>
 
-      <div class="lead-quote">
-        तसं पाहायला गेलं तर सर्व सजीवांचे ‘अस्तित्वात असणे’ हा खरोखरच एक विलक्षण योगायोग आहे.
+      <div class="content">
+        <p class="text-center-highlight">तसं पाहायला गेलं तर सर्व सजीवांचे ‘अस्तित्वात असणे’ हा खरोखरच एक विलक्षण योगायोग आहे.</p>
+
+        <p>विश्वात सैरावैरा भटकणारे; प्रामुख्याने कार्बन, हायड्रोजन, ऑक्सिजन, नायट्रोजन, कॅल्शियम व गंधक आणि अल्प प्रमाणात काही इतर मूलद्रव्यांचे अब्जावधी अणू का कोणास ठाऊक पण एका अनाकलनीय आणि अतिशय गुंतागुंतीच्या पद्धतीने एकत्र येतात आणि त्यातून तुमचे, माझे, आपल्या सर्वांचे सजीव स्वरूप साकारले जाते.</p>
+
+        <p>अणूंची होणारी ही प्रत्येक विविक्षित जुळणी इतकी अपूर्व आणि अद्वितीय असते की या विश्वात प्रत्येक सजीवाच्या अस्तित्वात असण्याच्या कालावधीसाठी ती एकदाच होते. ‘आयुष्य’ या एका मर्यादित कालखंडानंतर ती पुन्हा कधीही त्या स्वरूपात अनुभवता येत नाही. म्हणजे पुनरुत्पादन होते पण त्यातही एक जीव तंतोतंत दुसऱ्यासारखा नसतो.</p>
+
+        <p>आपल्या, म्हणजेच होमो सेपियन्सच्या बाबतीत होणारा हा ‘जुगाड’ अधिकच अगम्य आहे. असे म्हणण्याचे मुख्य कारण म्हणजे बुद्धिमत्ता. मनुष्य आणि इतर सर्व सजीव एकाच प्रकारच्या मूलद्रव्यांच्या अणू-रेणूंपासून तयार झालेले असले तरीही माणसात विचार करण्याची आणि अनुभव साठवून ठेवून ते पुन्हा आठवता येण्याची क्षमता सुरुवातीपासूनच जास्त होती आणि उत्क्रांतीच्या प्रवासात ती अधिकच प्रगल्भ होते आहे.</p>
+
+        <p>या अक्कलहुशारीने कालौघात कुतूहलाला जन्म दिला आणि त्यातून आलेल्या का, कसे, कधी, केंव्हा, कशावरून या आणि यासारख्या ‘क’ बाराखडीयुक्त प्रश्नांची उत्तरे शोधण्याच्या प्रयत्नांतून ज्ञानवृद्धी होत गेली, आजही होते आहे.</p>
+
+        <p>या जिज्ञासेपोटी माणसाला स्वतःच्या जन्माबद्दल, आयुष्याबद्दल आणि एकंदरीत अस्तित्वात असण्याबद्दलच्या प्रश्नांचा खोलात जाऊन शोध घ्यावासा वाटणे साहजिक होते आणि तसा तो सतत घेतला जातो आहे.</p>
+
+        <p>अस्तित्वात येण्यामागच्या कारणांची मीमांसा अस्तित्वात आल्यानंतर केली जात असल्याने असेल कदाचित, पण प्रत्येक सजीवाच्या ‘असण्या’साठी विविध मूलद्रव्यांचे अब्जावधी अणू का व कसे एकत्र येतात आणि मर्यादित काळासाठी गुण्यागोविंदाने का नांदतात हे गूढ अद्याप तरी माणसाच्या बुद्धीला पूर्णपणे उकललेले नाही.</p>
+
+        <p>आणि म्हणूनच मग सजीवांना मूलतः अस्तित्वात आणण्यामागे काही थोडे निर्माते किंवा न उमगणारा कोणीतरी ‘तो’ निश्चित असणार या संकल्पनेने मूळ धरले असावे. भूतलावरच्या पहिल्यावहिल्या सजीवांना ‘त्याने’ अथवा ‘त्यांनी’ निर्माण केले किंवा आणून सोडले आणि हे जग त्यांच्या आणि पुढच्या पिढ्यांच्या हाती सोपवून जगन्नियंता लुप्त झाला असे काहीसे सर्वांना भावणारे भाकीत आदिमानवांनी स्वीकारले असावे.</p>
+
+        <p>याच काल्पनिक विश्वनिर्मात्यांना पुढे जाऊन देव-देवता, प्रेषित किंवा मसीहा ही आणि यासारखी रुपडी मनुष्यसमूहांनी दिली असावी.</p>
+
+        <p>जे आपल्याला कळत नाही आणि कुवतीच्या बाहेर आहे त्याचे नियंत्रण कोणा एका नियंत्याच्या हाती आहे यावर श्रद्धा ठेवली की जगराहाटी सुरळीत चालायला मदत होत असल्याने आपोआपच देव-प्रेषित-मसीहा यांना सर्वसामान्य जनतेने स्वीकारून श्रध्येय केले.</p>
+
+        <div class="divider">❅❅❅</div>
+
+        <p class="text-center-statement">आणि म्हणून नियंत्याचे अस्तित्व मान्य करणारा तो आस्तिक अशी सर्वसाधारण व्याख्या करता येते.</p>
+
+        <div class="divider">❅❅❅</div>
+
+        <p>असे असले तरी मनुष्यस्वभाव मुळातच अत्यंत तार्किक असल्याने त्याच्यातील काही तर्कटांना काही एका बाह्य निर्मात्याच्या असण्यावर श्रद्धा ठेवून तर्कबुद्धी बाजूला ठेवणे पटत नाहीच.</p>
+
+        <p>‘या विश्वात मूलद्रव्ये आणि त्यांचे अणू-रेणू आहेतच आणि अनुकूल परिस्थिती असली की त्यांचे एकत्र येणे आणि तसे टिकून राहणे इतर कोणत्याही बाह्य शक्तीच्या मदतीशिवाय सहज शक्य आहे’ ही व्याख्या तर्काच्या आधारे मान्य करणारी माणसे कोण्या एका अ-मानवीय ‘देव-प्रेषित-मसीहा’ चे अस्तित्व मान्य करणे शक्य नाही हे देखील साहजिकच म्हणावे लागेल.</p>
+
+        <p>‘आस्तिकते’ला नाकारणारे ते ‘नास्तिक’. या शब्दाचा उगम हा असा झाला असावा बहुदा.</p>
+
+        <div class="divider">❅❅❅</div>
+
+        <p>नास्तिक म्हणवल्या जाणाऱ्यांना ‘देव-प्रेषित-मसीहा’ किंवा तत्सम काही मान्य नसते. कोणत्याही सचेतन ‘अस्तित्वा’च्या असण्यासाठी अब्जावधी अणू-रेणूंचे एकत्र येणे आणि टिकून राहणे याकरता जी काही अनुकूल परिस्थिती असावी लागते तिच्या निर्मितीमागे काही एक अद्यापपावेतो तर्काच्या पलिकडे असलेले, न उमगलेले कारण आहे यावर त्यांची तर्कशुद्ध ‘श्रद्धा’ असते!</p>
+
+        <p>म्हणजे थोडक्यात पण अवघड वाक्यात सांगायचे तर ‘सानुकूलतेला’ काही एक अनैसर्गिक रूप देणे आणि परिस्थिती सानुकूल होण्यासाठी जी काही अनुकूलता निर्माण होते त्यामागच्या कारणांचा शोध घेण्यासाठी बौद्धिक चातुर्य पणाला न लावणे याला ‘नास्तिकां’चा ठाम नकार असतो!</p>
+
+        <p>म्हणजे लौकिकअर्थाने नास्तिक म्हणवले जाणारेही एका अर्थाने आस्तिकच असतात असेच म्हणावे लागते.</p>
+
+        <div class="divider">❅❅❅</div>
+
+        <p class="text-center-highlight">निसर्गाच्या, अद्यापपावेतो न कळलेल्या शक्तीचे, त्यात दडलेल्या ‘अशक्य ते शक्य’ करण्याची ताकद असलेल्या उर्जेचे अस्तित्व मान्य करणारे सश्रद्ध (ना)आस्तिक!</p>
+
+        <div class="divider">❅❅❅</div>
+
+        <!-- Centered format, reduced size & lightness -->
+        <p class="note-centered">सुप्राकॉन्शसच्या पातळीवरून ऑकल्ट एक्स्पीरियन्स घेत असताना इन ट्यून विथ द ट्यून..</p>
+
+        <div class="divider divider-short">❅❅</div>
+
+        <!-- Centered format, reduced size -->
+        <p class="date-centered">२०२६०९०९</p>
+
+        <div class="divider divider-single">❅</div>
       </div>
 
-      <p>
-        विश्वात सैरावैरा भटकणारे; प्रामुख्याने कार्बन, हायड्रोजन, ऑक्सिजन, नायट्रोजन, कॅल्शियम व गंधक आणि अल्प प्रमाणात काही इतर मूलद्रव्यांचे अब्जावधी अणू का कोणास ठाऊक पण एका अनाकलनीय आणि अतिशय गुंतागुंतीच्या पद्धतीने एकत्र येतात आणि त्यातून तुमचे, माझे, आपल्या सर्वांचे सजीव स्वरूप साकारले जाते.
-      </p>
-
-      <p>
-        अणूंची होणारी ही प्रत्येक विविक्षित जुळणी इतकी अपूर्व आणि अद्वितीय असते की या विश्वात प्रत्येक सजीवाच्या अस्तित्वात असण्याच्या कालावधीसाठी ती एकदाच होते. ‘आयुष्य’ या एका मर्यादित कालखंडानंतर ती पुन्हा कधीही त्या स्वरूपात अनुभवता येत नाही. म्हणजे पुनरुत्पादन होते पण त्यातही एक जीव तंतोतंत दुसऱ्यासारखा नसतो.
-      </p>
-
-      <p>
-        आपल्या, म्हणजेच होमो सेपियन्सच्या बाबतीत होणारा हा ‘जुगाड’ अधिकच अगम्य आहे. असे म्हणण्याचे मुख्य कारण म्हणजे बुद्धिमत्ता. मनुष्य आणि इतर सर्व सजीव एकाच प्रकारच्या मूलद्रव्यांच्या अणू-रेणूंपासून तयार झालेले असले तरीही माणसात विचार करण्याची आणि अनुभव साठवून ठेवून ते पुन्हा आठवता येण्याची क्षमता सुरुवातीपासूनच जास्त होती आणि उत्क्रांतीच्या प्रवासात ती अधिकच प्रगल्भ होते आहे.
-      </p>
-
-      <p>
-        या अक्कलहुशारीने कालौघात कुतूहलाला जन्म दिला आणि त्यातून आलेल्या का, कसे, कधी, केंव्हा, कशावरून या आणि यासारख्या ‘क’ बाराखडीयुक्त प्रश्नांची उत्तरे शोधण्याच्या प्रयत्नांतून ज्ञानवृद्धी होत गेली, आजही होते आहे.
-      </p>
-
-      <p>
-        या जिज्ञासेपोटी माणसाला स्वतःच्या जन्माबद्दल, आयुष्याबद्दल आणि एकंदरीत अस्तित्वात असण्याबद्दलच्या प्रश्नांचा खोलात जाऊन शोध घ्यावासा वाटणे साहजिक होते आणि तसा तो सतत घेतला जातो आहे.
-      </p>
-
-      <p>
-        अस्तित्वात येण्यामागच्या कारणांची मीमांसा अस्तित्वात आल्यानंतर केली जात असल्याने असेल कदाचित, पण प्रत्येक सजीवाच्या ‘असण्या’साठी विविध मूलद्रव्यांचे अब्जावधी अणू का व कसे एकत्र येतात आणि मर्यादित काळासाठी गुण्यागोविंदाने का नांदतात हे गूढ अद्याप तरी माणसाच्या बुद्धीला पूर्णपणे उकललेले नाही.
-      </p>
-
-      <p>
-        आणि म्हणूनच मग सजीवांना मूलतः अस्तित्वात आणण्यामागे काही थोडे निर्माते किंवा न उमगणारा कोणीतरी ‘तो’ निश्चित असणार या संकल्पनेने मूळ धरले असावे. भूतलावरच्या पहिल्यावहिल्या सजीवांना ‘त्याने’ अथवा ‘त्यांनी’ निर्माण केले किंवा आणून सोडले आणि हे जग त्यांच्या आणि पुढच्या पिढ्यांच्या हाती सोपवून जगन्नियंता लुप्त झाला असे काहीसे सर्वांना भावणारे भाकीत आदिमानवांनी स्वीकारले असावे.
-      </p>
-
-      <p>
-        याच काल्पनिक विश्वनिर्मात्यांना पुढे जाऊन देव-देवता, प्रेषित किंवा मसीहा ही आणि यासारखी रुपडी मनुष्यसमूहांनी दिली असावी.
-      </p>
-
-      <p>
-        जे आपल्याला कळत नाही आणि कुवतीच्या बाहेर आहे त्याचे नियंत्रण कोणा एका नियंत्याच्या हाती आहे यावर श्रद्धा ठेवली की जगराहाटी सुरळीत चालायला मदत होत असल्याने आपोआपच देव-प्रेषित-मसीहा यांना सर्वसामान्य जनतेने स्वीकारून श्रध्येय केले.
-      </p>
-
-      <div class="highlight-box">
-        आणि म्हणून नियंत्याचे अस्तित्व मान्य करणारा तो आस्तिक अशी सर्वसाधारण व्याख्या करता येते.
-      </div>
-
-      <p>
-        असे असले तरी मनुष्यस्वभाव मुळातच अत्यंत तार्किक असल्याने त्याच्यातील काही तर्कटांना काही एका बाह्य निर्मात्याच्या असण्यावर श्रद्धा ठेवून तर्कबुद्धी बाजूला ठेवणे पटत नाहीच.
-      </p>
-
-      <p>
-        ‘या विश्वात मूलद्रव्ये आणि त्यांचे अणू-रेणू आहेतच आणि अनुकूल परिस्थिती असली की त्यांचे एकत्र येणे आणि तसे टिकून राहणे इतर कोणत्याही बाह्य शक्तीच्या मदतीशिवाय सहज शक्य आहे’ ही व्याख्या तर्काच्या आधारे मान्य करणारी माणसे कोण्या एका अ-मानवीय ‘देव-प्रेषित-मसीहा’ चे अस्तित्व मान्य करणे शक्य नाही हे देखील साहजिकच म्हणावे लागेल.
-      </p>
-
-      <p>
-        ‘आस्तिकते’ला नाकारणारे ते ‘नास्तिक’. या शब्दाचा उगम हा असा झाला असावा बहुदा.
-      </p>
-
-      <div class="section-divider">* * *</div>
-
-      <p>
-        नास्तिक म्हणवल्या जाणाऱ्यांना ‘देव-प्रेषित-मसीहा’ किंवा तत्सम काही मान्य नसते. कोणत्याही सचेतन ‘अस्तित्वा’च्या असण्यासाठी अब्जावधी अणू-रेणूंचे एकत्र येणे आणि टिकून राहणे याकरता जी काही अनुकूल परिस्थिती असावी लागते तिच्या निर्मितीमागे काही एक अद्यापपावेतो तर्काच्या पलिकडे असलेले, न उमगलेले कारण आहे यावर त्यांची तर्कशुद्ध ‘श्रद्धा’ असते!
-      </p>
-
-      <p>
-        म्हणजे थोडक्यात पण अवघड वाक्यात सांगायचे तर ‘सानुकूलतेला’ काही एक अनैसर्गिक रूप देणे आणि परिस्थिती सानुकूल होण्यासाठी जी काही अनुकूलता निर्माण होते त्यामागच्या कारणांचा शोध घेण्यासाठी बौद्धिक चातुर्य पणाला न लावणे याला ‘नास्तिकां’चा ठाम नकार असतो!
-      </p>
-
-      <p>
-        म्हणजे लौकिकअर्थाने नास्तिक म्हणवले जाणारेही एका अर्थाने आस्तिकच असतात असेच म्हणावे लागते.
-      </p>
-
-      <div class="highlight-box">
-        निसर्गाच्या, अद्यापपावेतो न कळलेल्या शक्तीचे, त्यात दडलेल्या <em>‘अशक्य ते शक्य’</em> करण्याची ताकद असलेल्या उर्जेचे अस्तित्व मान्य करणारे सश्रद्ध (ना)आस्तिक!
+      <!-- Share Action -->
+      <div class="actions-wrap">
+        <button class="share-btn" id="shareBtn">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
+          </svg>
+          शेअर करा
+        </button>
+        <span class="toast" id="toast">लिंक कॉपी केली गेली!</span>
       </div>
     </article>
-
-    <footer>
-      <div><em>सुप्राकॉन्शसच्या पातळीवरून ऑकल्ट एक्स्पीरियन्स घेत असताना इन ट्यून विथ द ट्यून..</em></div>
-      
-      <div class="footer-bottom-bar">
-        <span class="footer-stamp">२०२६०९०९</span>
-        
-        <!-- Share Button at the bottom -->
-        <button class="action-btn" id="shareBtn" aria-label="Share this article">
-          <span>🔗</span>
-          <span id="shareLabel">Share</span>
-        </button>
-      </div>
-    </footer>
-  </main>
+  </div>
 
   <script>
-    // Theme Switch Logic
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-    const htmlElement = document.documentElement;
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElem = document.documentElement;
 
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDark) {
-      applyTheme('dark');
-    }
-
-    function applyTheme(theme) {
-      htmlElement.setAttribute('data-theme', theme);
-      if (theme === 'dark') {
-        themeIcon.textContent = '☀️';
-        themeLabel.textContent = 'Light Mode';
-      } else {
-        themeIcon.textContent = '🌙';
-        themeLabel.textContent = 'Dark Mode';
-      }
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      applyTheme(newTheme);
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlElem.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+      htmlElem.setAttribute('data-theme', nextTheme);
+      themeToggle.textContent = nextTheme === 'light' ? '🌓' : '☀️';
     });
 
-    // Native Share / Fallback Copy Logic
+    // Share button
     const shareBtn = document.getElementById('shareBtn');
-    const shareLabel = document.getElementById('shareLabel');
+    const toast = document.getElementById('toast');
 
     shareBtn.addEventListener('click', async () => {
       const shareData = {
-        title: document.title,
-        text: 'आस्तिक (ना)आस्तिक… - एक विचार मंथन',
+        title: 'आस्तिक (ना)आस्तिक…',
+        text: 'आस्तिक (ना)आस्तिक…',
         url: window.location.href
       };
 
@@ -415,22 +506,24 @@
           await navigator.share(shareData);
         } catch (err) {
           if (err.name !== 'AbortError') {
-            console.error('Share error:', err);
+            copyToClipboard();
           }
         }
       } else {
-        try {
-          await navigator.clipboard.writeText(window.location.href);
-          const originalLabel = shareLabel.textContent;
-          shareLabel.textContent = 'Copied!';
-          setTimeout(() => {
-            shareLabel.textContent = originalLabel;
-          }, 2000);
-        } catch (err) {
-          alert('Link: ' + window.location.href);
-        }
+        copyToClipboard();
       }
     });
+
+    function copyToClipboard() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2600);
+      }).catch(() => {
+        toast.textContent = 'कॉपी करण्यात अडचण आली.';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2600);
+      });
+    }
   </script>
 </body>
 </html>
