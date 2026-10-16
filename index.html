@@ -13,8 +13,8 @@
   <style>
     :root {
       --bg-color: #fbf9f5;
-      --card-bg: rgba(255, 255, 255, 0.88);
-      --card-border: rgba(210, 195, 175, 0.4);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-border: rgba(210, 195, 175, 0.45);
       --text-main: #2b2520;
       --text-muted: #6e655f;
       --accent-color: #8b5a2b;
@@ -25,12 +25,11 @@
       --btn-hover: #70451e;
       --shadow: 0 16px 40px rgba(70, 50, 30, 0.08);
       --divider-color: #b0957d;
-      --atom-orbit: rgba(139, 90, 43, 0.28);
     }
 
     [data-theme="dark"] {
       --bg-color: #121316;
-      --card-bg: rgba(24, 26, 31, 0.92);
+      --card-bg: rgba(24, 26, 31, 0.95);
       --card-border: rgba(90, 85, 100, 0.35);
       --text-main: #e8e6e3;
       --text-muted: #a49f99;
@@ -42,7 +41,6 @@
       --btn-hover: #f0be8c;
       --shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
       --divider-color: #8f7967;
-      --atom-orbit: rgba(229, 169, 107, 0.35);
     }
 
     * {
@@ -52,7 +50,9 @@
     }
 
     body {
+      background-color: #fbf9f5;
       background-color: var(--bg-color);
+      color: #2b2520;
       color: var(--text-main);
       font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif;
       min-height: 100vh;
@@ -77,8 +77,11 @@
     }
 
     .theme-btn {
+      background-color: #ffffff;
       background: var(--card-bg);
+      border: 1px solid #d2c3af;
       border: 1px solid var(--card-border);
+      color: #2b2520;
       color: var(--text-main);
       width: 44px;
       height: 44px;
@@ -88,15 +91,9 @@
       align-items: center;
       justify-content: center;
       font-size: 1.25rem;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
-      -webkit-appearance: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
       -webkit-tap-highlight-color: transparent;
       outline: none;
-    }
-
-    .theme-btn:hover {
-      transform: scale(1.08);
     }
 
     .art-container {
@@ -149,13 +146,13 @@
     }
 
     .card {
+      background-color: #ffffff;
       background: var(--card-bg);
+      border: 1px solid #e0d5c8;
       border: 1px solid var(--card-border);
       border-radius: 24px;
       padding: 3.5rem 3rem;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
@@ -164,6 +161,7 @@
       font-weight: 700;
       text-align: center;
       margin-bottom: 2rem;
+      color: #8b5a2b;
       color: var(--accent-color);
       letter-spacing: 0.5px;
       line-height: 1.4;
@@ -173,6 +171,7 @@
       font-size: 1.18rem;
       font-weight: 400;
       line-height: 2.05;
+      color: #2b2520;
       color: var(--text-main);
       word-break: keep-all;
       overflow-wrap: break-word;
@@ -191,9 +190,12 @@
       line-height: 1.9;
       margin: 2.2rem 0;
       padding: 1rem 1.4rem;
+      background-color: rgba(139, 90, 43, 0.08);
       background: var(--accent-soft);
       border-radius: 14px;
+      border-left: 3px solid #8b5a2b;
       border-left: 3px solid var(--accent-color);
+      border-right: 3px solid #8b5a2b;
       border-right: 3px solid var(--accent-color);
     }
 
@@ -204,6 +206,7 @@
       line-height: 1.9;
       margin: 2.2rem 0;
       padding: 0.9rem 1.2rem;
+      background-color: rgba(139, 90, 43, 0.08);
       background: var(--accent-soft);
       border-radius: 14px;
     }
@@ -212,6 +215,7 @@
       text-align: center !important;
       font-size: 0.96rem;
       font-weight: 300;
+      color: #6e655f;
       color: var(--text-muted);
       margin: 1.4rem 0;
       line-height: 1.8;
@@ -222,6 +226,7 @@
       font-size: 0.88rem;
       font-weight: 300;
       letter-spacing: 2px;
+      color: #6e655f;
       color: var(--text-muted);
       margin: 1.2rem 0;
     }
@@ -230,6 +235,7 @@
       text-align: center;
       font-size: 1.25rem;
       letter-spacing: 0.5rem;
+      color: #b0957d;
       color: var(--divider-color);
       margin: 2.2rem 0;
       user-select: none;
@@ -245,72 +251,69 @@
       margin: 1.4rem 0;
     }
 
-    b, strong {
-      font-weight: 600;
+    /* Neutral class names so Samsung Adblock/Content Blocker never hides it */
+    .bottom-bar-wrap {
+      display: block !important;
+      text-align: center !important;
+      margin-top: 3rem !important;
+      padding-top: 1rem !important;
+      width: 100% !important;
+      visibility: visible !important;
+      opacity: 1 !important;
     }
 
-    i, em {
-      font-style: italic;
-    }
-
-    .actions-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 3.5rem;
-    }
-
-    /* Updated Share Button for Samsung Internet Compatibility */
-    .share-btn {
-      -webkit-appearance: none;
-      appearance: none;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      border: none;
-      padding: 0.9rem 2.4rem;
-      font-family: inherit;
-      font-size: 1.05rem;
-      font-weight: 500;
-      border-radius: 50px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-      transition: all 0.25s ease;
-      outline: none;
+    .action-pill {
+      display: inline-block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: #8b5a2b !important;
+      background: var(--btn-bg) !important;
+      color: #ffffff !important;
+      color: var(--btn-text) !important;
+      border: 2px solid transparent !important;
+      padding: 14px 36px !important;
+      font-family: 'IBM Plex Sans Devanagari', 'IBM Plex Sans', sans-serif !important;
+      font-size: 1.1rem !important;
+      font-weight: 600 !important;
+      line-height: 1.4 !important;
+      border-radius: 50px !important;
+      cursor: pointer !important;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18) !important;
+      text-decoration: none !important;
       -webkit-tap-highlight-color: transparent;
+      min-width: 170px;
     }
 
-    .share-btn:hover {
-      background: var(--btn-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+    .action-pill:active,
+    .action-pill:hover {
+      background-color: #70451e !important;
+      background: var(--btn-hover) !important;
     }
 
-    .share-btn svg {
-      width: 19px;
-      height: 19px;
-      fill: currentColor;
-      margin-right: 0.65rem; /* Better compatibility than gap */
-      vertical-align: middle;
-      display: inline-block;
+    .action-icon {
+      display: inline-block !important;
+      width: 18px !important;
+      height: 18px !important;
+      vertical-align: middle !important;
+      margin-right: 8px !important;
+      margin-top: -3px !important;
+      fill: currentColor !important;
     }
 
-    .toast {
-      font-size: 0.9rem;
+    .status-msg {
+      display: block;
+      font-size: 0.92rem;
+      color: #8b5a2b;
       color: var(--accent-color);
+      margin-top: 0.75rem;
+      min-height: 1.4rem;
+      font-weight: 500;
       opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      height: 1.2rem;
-      margin-top: 0.8rem;
+      transition: opacity 0.3s ease;
     }
 
-    .toast.show {
+    .status-msg.visible {
       opacity: 1;
-      transform: translateY(0);
     }
 
     @media (max-width: 680px) {
@@ -359,7 +362,7 @@
 
   <div class="container">
     <div class="theme-toggle-wrap">
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme">🌓</button>
+      <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle Light/Dark Theme">🌓</button>
     </div>
 
     <!-- Animated Cosmic Atom SVG -->
@@ -389,28 +392,26 @@
           </linearGradient>
         </defs>
 
-        <!-- Dynamic Orbits -->
         <g class="orbit-1">
           <ellipse cx="150" cy="150" rx="122" ry="46" stroke="url(#orbitGrad1)" stroke-width="2.2" stroke-dasharray="7 5"/>
-          <circle cx="272" cy="150" r="6" fill="#8be9fd" filter="drop-shadow(0 0 5px #8be9fd)"/>
-          <circle cx="28" cy="150" r="4.5" fill="#ff79c6" filter="drop-shadow(0 0 4px #ff79c6)"/>
+          <circle cx="272" cy="150" r="6" fill="#8be9fd"/>
+          <circle cx="28" cy="150" r="4.5" fill="#ff79c6"/>
         </g>
 
         <g class="orbit-2">
           <ellipse cx="150" cy="150" rx="122" ry="46" transform="rotate(60 150 150)" stroke="url(#orbitGrad2)" stroke-width="2.2" stroke-dasharray="10 6"/>
-          <circle cx="236" cy="200" r="5.5" fill="#50fa7b" filter="drop-shadow(0 0 5px #50fa7b)"/>
-          <circle cx="64" cy="100" r="4" fill="#ffb86c" filter="drop-shadow(0 0 4px #ffb86c)"/>
+          <circle cx="236" cy="200" r="5.5" fill="#50fa7b"/>
+          <circle cx="64" cy="100" r="4" fill="#ffb86c"/>
         </g>
 
         <g class="orbit-3">
           <ellipse cx="150" cy="150" rx="122" ry="46" transform="rotate(120 150 150)" stroke="url(#orbitGrad3)" stroke-width="2.2"/>
-          <circle cx="211" cy="90" r="5" fill="#bd93f9" filter="drop-shadow(0 0 5px #bd93f9)"/>
-          <circle cx="89" cy="210" r="4" fill="#ff79c6" filter="drop-shadow(0 0 4px #ff79c6)"/>
+          <circle cx="211" cy="90" r="5" fill="#bd93f9"/>
+          <circle cx="89" cy="210" r="4" fill="#ff79c6"/>
         </g>
 
-        <!-- Nucleus Core / Life Spark -->
         <circle class="nucleus-core" cx="150" cy="150" r="28" fill="url(#centerGlow)"/>
-        <circle cx="150" cy="150" r="9" fill="#ffffff" filter="drop-shadow(0 0 8px rgba(255,255,255,0.95))"/>
+        <circle cx="150" cy="150" r="9" fill="#ffffff"/>
       </svg>
     </div>
 
@@ -465,26 +466,24 @@
 
         <div class="divider">❅❅❅</div>
 
-        <!-- Centered format, reduced size & lightness -->
         <p class="note-centered">सुप्राकॉन्शसच्या पातळीवरून ऑकल्ट एक्स्पीरियन्स घेत असताना इन ट्यून विथ द ट्यून..</p>
 
         <div class="divider divider-short">❅❅</div>
 
-        <!-- Centered format, reduced size -->
         <p class="date-centered">२०२६०९०९</p>
 
         <div class="divider divider-single">❅</div>
       </div>
 
-      <!-- Share Action -->
-      <div class="actions-wrap">
-        <button class="share-btn" id="shareBtn" aria-label="Share Document">
-          <svg viewBox="0 0 24 24">
+      <!-- Bottom Action Button (Neutral naming to bypass Samsung Internet Adblockers) -->
+      <div class="bottom-bar-wrap">
+        <button type="button" class="action-pill" id="sendLinkBtn">
+          <svg class="action-icon" viewBox="0 0 24 24">
             <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
           </svg>
-          शेअर करा
+          <span>शेअर करा</span>
         </button>
-        <span class="toast" id="toast">लिंक कॉपी केली गेली!</span>
+        <div class="status-msg" id="statusMsg">लिंक कॉपी केली गेली!</div>
       </div>
     </article>
   </div>
@@ -494,46 +493,73 @@
     const themeToggle = document.getElementById('themeToggle');
     const htmlElem = document.documentElement;
 
-    themeToggle.addEventListener('click', () => {
+    themeToggle.addEventListener('click', function() {
       const currentTheme = htmlElem.getAttribute('data-theme');
       const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
       htmlElem.setAttribute('data-theme', nextTheme);
       themeToggle.textContent = nextTheme === 'light' ? '🌓' : '☀️';
     });
 
-    // Share button
-    const shareBtn = document.getElementById('shareBtn');
-    const toast = document.getElementById('toast');
+    // Action button with fallback for local file:// and Samsung Internet
+    const sendLinkBtn = document.getElementById('sendLinkBtn');
+    const statusMsg = document.getElementById('statusMsg');
 
-    shareBtn.addEventListener('click', async () => {
-      const shareData = {
-        title: 'आस्तिक (ना)आस्तिक…',
-        text: 'आस्तिक (ना)आस्तिक…',
-        url: window.location.href
-      };
+    sendLinkBtn.addEventListener('click', function() {
+      const pageUrl = window.location.href;
+      const pageTitle = 'आस्तिक (ना)आस्तिक…';
 
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-        } catch (err) {
+      if (navigator.share && window.location.protocol.indexOf('http') === 0) {
+        navigator.share({
+          title: pageTitle,
+          text: pageTitle,
+          url: pageUrl
+        }).catch(function(err) {
           if (err.name !== 'AbortError') {
-            copyToClipboard();
+            fallbackCopy(pageUrl);
           }
-        }
+        });
       } else {
-        copyToClipboard();
+        fallbackCopy(pageUrl);
       }
     });
 
-    function copyToClipboard() {
-      navigator.clipboard.writeText(window.location.href).then(() => {
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2600);
-      }).catch(() => {
-        toast.textContent = 'कॉपी करण्यात अडचण आली.';
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2600);
-      });
+    function fallbackCopy(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(showFeedback).catch(function() {
+          legacyCopy(text);
+        });
+      } else {
+        legacyCopy(text);
+      }
+    }
+
+    function legacyCopy(text) {
+      try {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        tempInput.style.position = 'fixed';
+        tempInput.style.left = '-9999px';
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        showFeedback();
+      } catch (e) {
+        statusMsg.textContent = 'कृपया ब्राउझरची लिंक कॉपी करा.';
+        statusMsg.classList.add('visible');
+        setTimeout(function() {
+          statusMsg.classList.remove('visible');
+        }, 3000);
+      }
+    }
+
+    function showFeedback() {
+      statusMsg.textContent = 'लिंक कॉपी केली गेली!';
+      statusMsg.classList.add('visible');
+      setTimeout(function() {
+        statusMsg.classList.remove('visible');
+      }, 2800);
     }
   </script>
 </body>
