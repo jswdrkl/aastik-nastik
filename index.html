@@ -90,6 +90,9 @@
       font-size: 1.25rem;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
       transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
     }
 
     .theme-btn:hover {
@@ -205,7 +208,6 @@
       border-radius: 14px;
     }
 
-    /* Centered text formatting */
     .note-centered {
       text-align: center !important;
       font-size: 0.96rem;
@@ -255,11 +257,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       margin-top: 3.5rem;
-      gap: 0.8rem;
     }
 
+    /* Updated Share Button for Samsung Internet Compatibility */
     .share-btn {
+      -webkit-appearance: none;
+      appearance: none;
       background: var(--btn-bg);
       color: var(--btn-text);
       border: none;
@@ -271,9 +276,11 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.65rem;
+      justify-content: center;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
       transition: all 0.25s ease;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .share-btn:hover {
@@ -286,6 +293,9 @@
       width: 19px;
       height: 19px;
       fill: currentColor;
+      margin-right: 0.65rem; /* Better compatibility than gap */
+      vertical-align: middle;
+      display: inline-block;
     }
 
     .toast {
@@ -295,6 +305,7 @@
       transform: translateY(6px);
       transition: opacity 0.3s ease, transform 0.3s ease;
       height: 1.2rem;
+      margin-top: 0.8rem;
     }
 
     .toast.show {
@@ -467,7 +478,7 @@
 
       <!-- Share Action -->
       <div class="actions-wrap">
-        <button class="share-btn" id="shareBtn">
+        <button class="share-btn" id="shareBtn" aria-label="Share Document">
           <svg viewBox="0 0 24 24">
             <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/>
           </svg>
